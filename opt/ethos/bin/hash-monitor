@@ -246,7 +246,7 @@ function get_hashrates(){
 		}
 
 		if($miner == "grin-miner"){
-			$raw = trim(`tail -300 grin-miner.log | egrep "Device $i" | grep "Graphs per second: " | grep -Poi "(?<=second:)\s((\d+)(\.\d+)?)" | sed 's/ //g' | awk '{ sum += $1; n++ } END { if (n > 0) printf "%.2f",sum / n; }'`);
+			$raw = trim(`tail -300 /var/run/miner.output | egrep "Device $i" | grep "Graphs per second: " | grep -Poi "(?<=second:)\s((\d+)(\.\d+)?)" | sed 's/ //g' | awk '{ sum += $1; n++ } END { if (n > 0) printf "%.2f",sum / n; }'`);
 		}	
 			
 		if($miner == "wolf-xmr-cpu"){
