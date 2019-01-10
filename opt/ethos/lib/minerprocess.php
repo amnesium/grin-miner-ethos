@@ -264,6 +264,12 @@ $pool_syntax = array(
     "http"=>"%s",
     ""=>"%s"
   ),
+  "grin-miner"=>array(
+    "ssl"=>"%s",
+    "stratum+tcp"=>"%s",
+    "http"=>"%s",
+    ""=>"%s"
+  ),
   "default"=>array(
     "ssl"=>"ssl://%s",
     "stratum+tcp"=>"stratum+tcp://%s",
@@ -288,9 +294,13 @@ function setup_pools($miner)
 
     case "ethminer-single":
     case "progpowminer":
-    case "progpowminer-single";	  
+    case "progpowminer-single";
     	$miner_syntax = "ethminer";
     	break;
+
+    case "grin-miner":
+	$miner_syntax = "grin-miner";
+	break;
 	}
 
   $profile = ((isset($pool_syntax[$miner_syntax])) ? $miner_syntax : "default");
