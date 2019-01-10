@@ -5,9 +5,10 @@ Works with ethos 1.3.3 (latest), other versions are not tested.
 
 grin-miner version: 0.5.1
 
+```
 miner [worker] grin-miner
 grin-miner=proxywallet farm@test.com
 grin-miner=proxypool1 us-east.stratum.grinmint.com:3416
 grin-miner=poolpass1 farmpw
-
+```
 
