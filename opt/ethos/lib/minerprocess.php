@@ -651,11 +651,21 @@ function start_miner()
         *  Grin miner
         ********************************/
 	if (preg_match("/grin-miner/",$miner)){	
-		$devices = implode(",",select_gpus());	
-		if(trim(`/opt/ethos/sbin/ethos-readconf selectedgpus`)){	
-			$mine_with = "";	
-        }	
-	
+		$maxtemp = trim(shell_exec("/opt/ethos/sbin/ethos-readconf maxtemp"));
+		if ($maxtemp == "") {
+			$maxtemp = "85";
+		}
+		$config_string = file_get_contents("/home/ethos/grin-miner.stub.conf");
+
+		$config_string = str_replace("WORKER",$worker,$config_string);
+		$config_string = str_replace("POOL1",$proxypool1,$config_string);
+#		$config_string = str_replace("POOL2",$proxypool2,$config_string);
+		$config_string = str_replace("LOGIN",$proxywallet,$config_string);
+		$config_string = str_replace("PASSWORD1",$poolpass1,$config_string);
+#		$config_string = str_replace("PASSWORD2",$poolpass2,$config_string);
+		file_put_contents("/var/run/ethos/grin-miner.toml",$config_string);
+	}
+
 	/*******************************
 	*  CGMINER-SKEIN/SGMINER-GM/SGMINER-GM-XMR
 	********************************/
@@ -1104,6 +1114,7 @@ function start_miner()
 	$miner_path['teamredminer'] = "/usr/bin/screen -c /opt/ethos/etc/screenrc.teamredminer -l -L -dmS teamredminer /opt/miners/teamredminer/teamredminer";
 	$miner_path['ewbf-equihash'] = "/usr/bin/screen -c /opt/ethos/etc/screenrc.ewbf-equihash -l -L -dmS ewbf-equihash /opt/miners/ewbf-equihash/ewbf-equihash";
 	$miner_path['lolminer'] = "/usr/bin/screen -c /opt/ethos/etc/screenrc.lolminer -l -L -dmS lolminer /opt/miners/lolminer/lolMiner";
+	$miner_path['grin-miner'] = "/usr/bin/screen -c /opt/ethos/etc/screenrc.grin-miner -l -L -dmS grin-miner /opt/miners/grin-miner/grin-miner";
 		
 			
 	$start_miners = select_gpus();
@@ -1137,6 +1148,7 @@ function start_miner()
 		$miner_params['teamredminer'] = $flags ." ". $pools;
 		$miner_params['ewbf-equihash'] = "--config /var/run/ethos/ewbf-equihash.conf";
 		$miner_params['lolminer'] = $flags;
+		$miner_params['grin-miner'] = "";
 
 		$miner_suffix['avermore'] = " " . $mine_with . " " . $extraflags;
 		$miner_suffix['dstm-zcash'] = " " . $mine_with . " " . $extraflags;
@@ -1160,6 +1172,7 @@ function start_miner()
 		$miner_suffix['xtl-stak'] = " " . $extraflags;
 		$miner_suffix['teamredminer'] = " " . $mine_with . " " . $extraflags;
 		$miner_suffix['lolminer'] = "";
+		$miner_suffix['grin-miner'] = "";
 		
 		$command = "su - ethos -c \"" . escapeshellcmd($miner_path[$miner] . " " . $miner_params[$miner]) . " $miner_suffix[$miner]\"";
 		$command = str_replace('\#',"#",$command);
