@@ -1,1 +1,1 @@
-grin-miner v0.5.2-cuda-ocl-ethos
+grin-miner v1.0.0-cuda-ocl-ethos
