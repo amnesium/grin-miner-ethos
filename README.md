@@ -5,6 +5,15 @@ Works with ethos 1.3.3 (latest), other versions are not tested.
 
 grin-miner version: 1.0.2-cuda-ocl-ethos
 
+## Installation
+```
+# From rig:
+git clone https://github.com/amnesium/grin-miner-ethos.git
+cd grin-miner-ethos
+./install
+sudo reboot
+```
+
 SSL disabled in grin-miner.stub.conf, uncomment the line "stratum_server_tls_enabled = true" to enable SSL.
 
 ```
