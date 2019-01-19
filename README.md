@@ -3,7 +3,7 @@ grin-miner ethOS Mining OS integration (ethosdistro.com)
 
 Works with ethos 1.3.3 (latest), other versions are not tested.
 
-grin-miner version: 1.0.0-cuda-ocl-ethos
+grin-miner version: 1.0.2-cuda-ocl-ethos
 
 SSL disabled in grin-miner.stub.conf, uncomment the line "stratum_server_tls_enabled = true" to enable SSL.
 
