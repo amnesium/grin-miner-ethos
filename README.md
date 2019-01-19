@@ -1,11 +1,11 @@
-### grin-miner-ethos
+## grin-miner-ethos
 grin-miner ethOS Mining OS integration (ethosdistro.com)
 
 Works with ethos 1.3.3 (latest), other versions are not tested.
 
 grin-miner version: 1.0.2-cuda-ocl-ethos
 
-## Installation
+### Installation
 ```
 # From rig:
 git clone https://github.com/amnesium/grin-miner-ethos.git
