@@ -12,14 +12,13 @@ git clone https://github.com/amnesium/grin-miner-ethos.git
 cd grin-miner-ethos
 ./install
 sudo reboot
-```
 
-SSL enabled in grin-miner.stub.conf, comment the line "stratum_server_tls_enabled = true" to disable SSL.
 
 ```
 miner [worker] grin-miner
 grin-miner=proxywallet farm@test.com
 grin-miner=proxypool1 us-east.stratum.grinmint.com:4416
 grin-miner=poolpass1 farmpw
+grin-miner=flags ssl=on # or ssl=off
 ```
 

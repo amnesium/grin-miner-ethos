@@ -660,21 +660,26 @@ function start_miner()
         /*******************************
         *  Grin miner
         ********************************/
-	if (preg_match("/grin-miner/",$miner)){	
-		$maxtemp = trim(shell_exec("/opt/ethos/sbin/ethos-readconf maxtemp"));
-		if ($maxtemp == "") {
-			$maxtemp = "85";
-		}
-		$config_string = file_get_contents("/home/ethos/grin-miner.stub.conf");
+        if (preg_match("/grin-miner/",$miner)){
+                $config_string = file_get_contents("/home/ethos/grin-miner.stub.conf");
+                if (preg_match("/ssl=on/",$flags)) {
+                        $config_string = str_replace("SSLSTATE","true",$config_string);
+                } else {
+                        $config_string = str_replace("SSLSTATE","false",$config_string);
+                }
 
-		$config_string = str_replace("WORKER",trim(`/opt/ethos/sbin/ethos-readconf worker`),$config_string);
-		$config_string = str_replace("POOL1",$proxypool1,$config_string);
-#		$config_string = str_replace("POOL2",$proxypool2,$config_string);
-		$config_string = str_replace("LOGIN",$proxywallet,$config_string);
-		$config_string = str_replace("PASSWORD1",$poolpass1,$config_string);
-#		$config_string = str_replace("PASSWORD2",$poolpass2,$config_string);
-		file_put_contents("/home/ethos/.grin/grin-miner.toml",$config_string);
-	}
+                $maxtemp = trim(shell_exec("/opt/ethos/sbin/ethos-readconf maxtemp"));
+                if ($maxtemp == "") {
+                        $maxtemp = "85";
+                }
+                $config_string = str_replace("WORKER",trim(`/opt/ethos/sbin/ethos-readconf worker`),$config_string);
+                $config_string = str_replace("POOL1",$proxypool1,$config_string);
+#               $config_string = str_replace("POOL2",$proxypool2,$config_string);
+                $config_string = str_replace("LOGIN",$proxywallet,$config_string);
+                $config_string = str_replace("PASSWORD1",$poolpass1,$config_string);
+#               $config_string = str_replace("PASSWORD2",$poolpass2,$config_string);
+                file_put_contents("/home/ethos/.grin/grin-miner.toml",$config_string);
+        }
 
 	/*******************************
 	*  CGMINER-SKEIN/SGMINER-GM/SGMINER-GM-XMR
