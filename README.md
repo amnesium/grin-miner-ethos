@@ -14,12 +14,12 @@ cd grin-miner-ethos
 sudo reboot
 ```
 
-SSL disabled in grin-miner.stub.conf, uncomment the line "stratum_server_tls_enabled = true" to enable SSL.
+SSL enabled in grin-miner.stub.conf, comment the line "stratum_server_tls_enabled = true" to disable SSL.
 
 ```
 miner [worker] grin-miner
 grin-miner=proxywallet farm@test.com
-grin-miner=proxypool1 us-east.stratum.grinmint.com:3416
+grin-miner=proxypool1 us-east.stratum.grinmint.com:4416
 grin-miner=poolpass1 farmpw
 ```
 
