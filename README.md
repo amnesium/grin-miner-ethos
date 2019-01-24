@@ -12,7 +12,7 @@ git clone https://github.com/amnesium/grin-miner-ethos.git
 cd grin-miner-ethos
 ./install
 sudo reboot
-
+```
 
 ```
 miner [worker] grin-miner
