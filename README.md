@@ -14,6 +14,7 @@ cd grin-miner-ethos
 sudo reboot
 ```
 
+### Ethos configuration
 ```
 miner [worker] grin-miner
 grin-miner=proxywallet farm@test.com
