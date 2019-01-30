@@ -1,6 +1,8 @@
 ## grin-miner-ethos
 grin-miner ethOS Mining OS integration (ethosdistro.com)
 
+You shoud give a try to my bminer ethos port for better graphrate: https://github.com/amnesium/bminer-grin-ethos
+
 Works with ethos 1.3.3 (latest), other versions are not tested.
 
 grin-miner version: 1.0.2-cuda-ocl-ethos
